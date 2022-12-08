@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     String nameImage[];
     String urlOfImage[];
+    String authorName[];
 
     String width;
     String height;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         nameImage = new String[10];
         urlOfImage = new String[10];
+        authorName = new String[10];
 
         resol = new Double[10];
 
@@ -79,9 +81,11 @@ public class MainActivity extends AppCompatActivity {
                             for (int i = 0; i < 10; i++) {
                                 JSONObject list = mainArrayJson.getJSONObject(i);
                                 JSONObject urls = list.getJSONObject("urls");
+                                JSONObject users = list.getJSONObject("user");
 
                                 width = list.getString("width");
                                 height = list.getString("height");
+
                                 resol[i] = Double.parseDouble(width)/Double.parseDouble(height);
 
                                 if(list.getString("alt_description") != "null")
@@ -90,9 +94,10 @@ public class MainActivity extends AppCompatActivity {
                                     nameImage[i] = "Without Name";
 
                                 urlOfImage[i] = urls.getString("raw");
+                                authorName[i] = users.getString("name");
                             }
 
-                            CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(getApplicationContext(),urlOfImage, nameImage, resol);
+                            CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(getApplicationContext(),urlOfImage, nameImage,authorName, resol);
                             listView.setAdapter(customBaseAdapter);
 
                         } catch (JSONException e) {

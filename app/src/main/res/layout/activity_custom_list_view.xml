@@ -21,4 +21,12 @@
         android:textColor="@color/black"
         android:textSize="15dp" />
 
+    <TextView
+        android:id="@+id/authorName"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="My Text"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
 </LinearLayout>
